@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <title>Build Static HTML Tables</title>
+    <link rel="stylesheet" href="/monokai-sublime.css">
+    <style type="text/css">
+        .main-flex {
+            display: flex;
+        }
+        button {
+            margin: 0.25rem 0.5rem;
+            font-size: 1rem;
+            background: #428BCA;
+            color: #fff;
+            text-align: center;
+            border: 0;
+            transition: all 0.3s ease 0s;
+        }
+
+        button:hover {
+          background: #3071A9
+        }
+
+        .buttons {
+            margin-left: 2px;
+            /*display: flex;*/
+        }
+        .blue-row {
+            background-color: #02235c;
+            text-align: left;
+            color:#fff;
+            font-size:14px;
+        }
+    </style>
+</head>
+<body ng-controller="TableCreatorController as tableController">
+
+    <button ng-click="tableController.addRow()">Add Row</button>
+    <main class="main-flex"> 
+        <div id="Table">  
+            <table border="1" cellpadding="3" cellspacing="0" >
+                <tbody>
+                    <tr> 
+                        <td contentEditable="true" style="font-weight:bold; background-color:#02235c; text-align: left; color:#fff; font-size:14px;">
+                            Cell
+                        </td>
+                    </tr>
+                    <tr style="background-color: #cccccc;">
+                        <td contentEditable="true" style="font-weight:bold; font-size:14px; color:#000">
+                            Cell
+                        </td>
+                    </tr>
+                </tbody>        
+            </table>
+        </div>
+        <div class="buttons">
+            <div class="group-button">
+                <button ng-click="tableController.addCell(0)">Add Cell</button><button ng-click="tableController.deleteCell(0)">Delete Cell</button>
+            </div>
+            <div class="group-button">
+                <button ng-click="tableController.addCell(1)">Add Cell</button><button ng-click="tableController.deleteCell(1)">Delete Cell</button>
+            </div>
+        </div>
+    </main>
+
+    <div class="code">
+        <button ng-click="tableController.showHtml()">Show HTML</button>
+        <pre><code class="pre-code html"></code></pre>
+    </div>
+
+
+  
+
+    <!-- <table border="1" cellpadding="3" cellspacing="0" width="650">
+    <tbody>
+        <tr>
+            <td align="left" bgcolor="#02235c" style="color:#fff; font-size:14px; width: 60%;">
+                <strong>D.W. Campbell Tire Installation Package</strong></td>
+            <td align="right" bgcolor="#02235c" style="color:#fff; font-size:14px; width:10%;">
+                <strong>1 Tire</strong></td>
+            <td align="right" bgcolor="#02235c" style="color:#fff; font-size:14px; width:10%;">
+                <strong>2 Tires</strong></td>
+            <td align="right" bgcolor="#02235c" style="color:#fff; font-size:14px; width:10%;">
+                <strong>3 Tires</strong></td>
+            <td align="right" bgcolor="#02235c" style="color:#fff; font-size:14px; width:10%;">
+                <strong>4 Tires</strong></td>
+        </tr>
+        <tr bgcolor="#cccccc;" style="background-color: #cccccc; color:#fff;">
+            <td align="left" style="font-size:12px; width:60%; color:#000">
+                <strong>Alignment Check</strong></td>
+            <td align="right" style="font-size:12px; color:#ff0000; width:10%; color:#000">
+                FREE</td>
+            <td align="right" style="font-size:12px; color:#ff0000; width:10%; color:#000">
+                FREE</td>
+            <td align="right" style="font-size:12px; color:#ff0000; width:10%; color:#000">
+                FREE</td>
+            <td align="right" style="font-size:12px; color:#ff0000; width:10%; color:#000">
+                FREE</td>
+        </tr>
+        <tr>
+            <td align="left" bgcolor="#02235c" style="font-size:12px; color:#fff; width:60%;">
+                <strong>Lifetime Tire Rotation</strong></td>
+            <td align="right" bgcolor="#02235c" style="font-size:12px; color:#ff0000; width:10%; color:#fff">
+                FREE</td>
+            <td align="right" bgcolor="#02235c" style="font-size:12px; color:#ff0000; width:10%; color:#fff">
+                FREE</td>
+            <td align="right" bgcolor="#02235c" style="font-size:12px; color:#ff0000; width:10%; color:#fff">
+                FREE</td>
+            <td align="right" bgcolor="#02235c" style="font-size:12px; color:#ff0000; width:10%; color:#fff">
+                FREE</td>
+        </tr>
+        <tr bgcolor="#cccccc;" style="background-color: #cccccc; color:#fff;">
+            <td align="left" style="font-size:12px; width:60%; color:#000">
+                <strong>Lifetime Wheel Balancing</strong></td>
+            <td align="right" style="font-size:12px; color:#ff0000; width:10%; color:#000">
+                FREE</td>
+            <td align="right" style="font-size:12px; color:#ff0000; width:10%; color:#000">
+                FREE</td>
+            <td align="right" style="font-size:12px; color:#ff0000; width:10%; color:#000">
+                FREE</td>
+            <td align="right" style="font-size:12px; color:#ff0000; width:10%; color:#000">
+                FREE</td>
+        </tr>
+        <tr>
+            <td align="left" bgcolor="#02235c" style="font-size:12px; width:60%; color:#fff;">
+                <strong>Nationwide Guarantee</strong></td>
+            <td align="right" bgcolor="#02235c" style="font-size:12px; color:#ff0000; width:10%; color:#fff">
+                FREE</td>
+            <td align="right" bgcolor="#02235c" style="font-size:12px; color:#ff0000; width:10%; color:#fff">
+                FREE</td>
+            <td align="right" bgcolor="#02235c" style="font-size:12px; color:#ff0000; width:10%; color:#fff">
+                FREE</td>
+            <td align="right" bgcolor="#02235c" style="font-size:12px; color:#ff0000; width:10%; color:#fff">
+                FREE</td>
+        </tr>
+        <tr bgcolor="#cccccc;" style="background-color: #cccccc; color:#fff;">
+            <td align="left" style="font-size:12px; width:60%; color:#000">
+                <strong>Valve Stems</strong></td>
+            <td align="right" style="font-size:12px; color:#ff0000; width:10%; color:#000">
+                FREE</td>
+            <td align="right" style="font-size:12px; color:#ff0000; width:10%; color:#000">
+                FREE</td>
+            <td align="right" style="font-size:12px; color:#ff0000; width:10%; color:#000">
+                FREE</td>
+            <td align="right" style="font-size:12px; color:#ff0000; width:10%; color:#000">
+                FREE</td>
+        </tr>
+        <tr>
+            <td align="left" bgcolor="#02235c" style="font-size:12px; width:60%; color:#fff;">
+                <strong>Mounting &amp; Balancing</strong></td>
+            <td align="right" bgcolor="#02235c" style="font-size:12px; width:10%; color:#fff">
+                $17.00</td>
+            <td align="right" bgcolor="#02235c" style="font-size:12px; width:10%; color:#fff">
+                $34.00</td>
+            <td align="right" bgcolor="#02235c" style="font-size:12px; width:10%; color:#fff">
+                $51.00</td>
+            <td align="right" bgcolor="#02235c" style="font-size:12px; width:10%; color:#fff">
+                $68.00</td>
+        </tr>
+        <tr bgcolor="#cccccc;" style="background-color: #cccccc; color:#fff;">
+            <td align="left" style="font-size:12px; width:60%; color:#000">
+                <strong>Tire Disposal Fee</strong></td>
+            <td align="right" style="font-size:12px; width:10%; color:#000">
+                $2.75</td>
+            <td align="right" style="font-size:12px; width:10%; color:#000">
+                $5.50</td>
+            <td align="right" style="font-size:12px; width:10%; color:#000">
+                $8.25</td>
+            <td align="right" style="font-size:12px; width:10%; color:#000">
+                $11.00</td>
+        </tr>
+        <tr>
+            <td align="left" bgcolor="#02235c" style="font-size:12px; width:60%; color:#fff;">
+                <strong>State Tire Tax</strong></td>
+            <td align="right" bgcolor="#02235c" style="font-size:12px; width:10%; color:#fff">
+                $1.00</td>
+            <td align="right" bgcolor="#02235c" style="font-size:12px; width:10%; color:#fff">
+                $2.00</td>
+            <td align="right" bgcolor="#02235c" style="font-size:12px; width:10%; color:#fff">
+                $3.00</td>
+            <td align="right" bgcolor="#02235c" style="font-size:12px; width:10%; color:#fff">
+                $4.00</td>
+        </tr>
+    </tbody>
+    </table> -->
+
+
+<script src="/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular.min.js"></script>
+<script type="text/javascript" src="app.js"></script>
+</body>
+</html>
