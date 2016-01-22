@@ -1,6 +1,8 @@
 (function() {
     'use strict';
-    angular.module("app", []).controller("TableCreatorController", TableCreatorController);
+    angular.module("app", [])
+        .controller("TableCreatorController", TableCreatorController)
+        .directive('wpNap', napDirective);
 
     function TableCreatorController($scope, $compile) {
 
@@ -15,7 +17,11 @@
                 'color': '#fff',
                 'font-size': '14px',
                 'font-weight': 'bold'
-            }).attr("contentEditable", true);
+            }).attr({
+                "contentEditable": true,
+                "ng-style": 'myStyle',
+                "wp-nap": ''
+            });
         }
 
         function addGreyStyles(newCell) {
@@ -24,11 +30,14 @@
                 'font-weight': 'bold',
                 'font-size': '14px',
                 'color': '#000'
-            }).attr("contentEditable", true);
+            }).attr({
+                "contentEditable": true,
+                "ng-style": ''
+            });
         }
 
         function addDefaultText(newCell) {
-            newCell.appendChild(document.createTextNode('Cell'));
+            // newCell.appendChild(document.createTextNode('Cell'));
         }
 
         function getCurrentRow(n) {
@@ -102,6 +111,8 @@
             var currentRow = getCurrentRow(rowNumber),
                 newCell = currentRow.insertCell(getLastCell(currentRow));
 
+            $(newCell).css('width', '520px');
+
             if (currentRow.cells.length > colSpanValue) {
                 colSpanValue = currentRow.cells.length;
                 updateColSpan(colSpanValue);
@@ -123,8 +134,30 @@
 
         vm.showHtml = function() {
             var tableHtml = $('#Table');
-            tableHtml.find('*').removeAttr('class');
+            tableHtml.find('*').removeAttr('class contentEditable');
             $('.pre-code').text(($(tableHtml).html()));
         };
     }
+
+    function napDirective() {
+
+        var controller = function($scope) {};
+
+
+        var link = function(scope, element, attrs, fn) {
+            var styleDiv = element.find('.style-div');
+            styleDiv.hide();
+            element.find('#checkbox').on('click', function() {
+                styleDiv.toggle();
+            })
+        };
+
+        return {
+
+            // replace: true,
+            scope: {},
+            controller: controller,
+            link: link
+        };
+    };
 })();
