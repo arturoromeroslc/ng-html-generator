@@ -31,6 +31,22 @@
     </style>
 </head>
 <body ng-controller="TableCreatorController as tableController">
+service-landing-quote_summary_btm   
+    <div wp-nap>
+        <div class="style-div">
+            <input type="button" value="set color" ng-click="myStyle={color:'red'}">
+            <input type="button" value="set font to 23px" ng-click="myStyle={'font-size':'23px'}">
+            <input type="button" value="clear" ng-click="myStyle={}">
+            <br/>
+            <pre>myStyle={{myStyle}}</pre>
+      <label>Show Styler</label>
+      <input id="checkbox" type="checkbox">
+        </div>
+     
+    </div>
+  
+    
+
     <button ng-click="tableController.newRowWithCell()">Add Row</button> <button ng-click="tableController.addTableHead()">Add Table Head</button> <button ng-click="tableController.addTableFooter()">Add Table Footer</button>
     <main class="main-flex"> 
         <div id="Table">  
