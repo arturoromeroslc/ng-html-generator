@@ -41,21 +41,39 @@
         function appendButtons(rowNumber) {
             var buttons = [],
             htmlButtons = [
-                `<button class="inline-block" ng-click="tableController.addCell(${rowNumber})">Add Cell</button>`, 
-                `<button class="inline-block" ng-click="tableController.deleteCell(${rowNumber})">Delete Cell</button>`
+                `<button ng-click="tableController.addCell(${rowNumber})">Add Cell</button>`, 
+                `<button ng-click="tableController.deleteCell(${rowNumber})">Delete Cell</button>`
             ];
             angular.forEach(htmlButtons, function(button, key) {
                 buttons.push($compile(button)($scope))
             });
+        
+            $('.buttons').append($('<div class="' + rowNumber + '">').append(buttons));
 
-            $('.buttons').append($("<div/>").append(buttons));
         }
+
+        vm.addTableHead = function() {
+            var header = tableHtmlTag.createTHead();
+            header = $(header).attr("contentEditable", true);
+            header.innerHTML = "<b>This is a table header</b>";
+            header.css({
+                'background-color': '#02235c' 
+            })
+            appendButtons(0);
+        };
+
+        vm.addTableFooter = function() {
+            var footer = tableHtmlTag.createTFoot();
+            $(footer).attr("contentEditable", true);
+            footer.innerHTML = "<b>This is a table footer</b>";
+            // appendButtons();
+        };
 
         vm.newRowWithCell = function() {
             var rowLength = tableHtmlTag.rows.length,
                 newCell = tableHtmlTag.insertRow(rowLength).insertCell(0);
 
-            (rowLength % 2 === 0) ? addBlueStyle(newCell) : addGreyStyles(newCell);
+            (rowLength % 2 === 0) ? addGreyStyles(newCell) : addBlueStyle(newCell);
             
             addDefaultText(newCell);
             appendButtons(rowLength);
@@ -65,15 +83,19 @@
             var currentRow = getCurrentRow(rowNumber),
                 newCell = currentRow.insertCell(getLastCell(currentRow));
 
-            (rowNumber % 2 === 0) ? addBlueStyle(newCell) : addGreyStyles(newCell);
+            (rowNumber % 2 === 0) ? addGreyStyles(newCell) : addBlueStyle(newCell);
             addDefaultText(newCell);
         };
 
 
-        vm.deleteCell = function(rowNumber) {
+        vm.deleteCell = function(rowNumber) { debugger;
             var currentRow = getCurrentRow(rowNumber),
                 lastCell = getLastCell(currentRow),
                 newCell = currentRow.deleteCell(lastCell);
+
+                if(lastCell.cellIndex === -1) {
+                    $('.'+rowNumber).remove();
+                }
         };
 
         vm.showHtml = function() {
