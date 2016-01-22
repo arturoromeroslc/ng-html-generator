@@ -23,7 +23,7 @@
                 lastCell = row.cells[row.cells.length - 1],
                 newCell = row.insertCell(lastCell);
 
-            (n % 2 === 0) ? addBlueStyle(newCell) : addGreyStyles(newCell);
+            (n % 2 === 0) ? addBlueStyle(newCell) : console.log(n % 2);
 
             addDefaultText(newCell);
         };
